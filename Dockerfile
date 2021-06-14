@@ -1,6 +1,6 @@
 FROM node:14-alpine AS build-stage
 
-ARG VERSION=1.2.1
+ARG VERSION=1.2.2
 
 RUN set -xe \
     && apk add --no-cache git \

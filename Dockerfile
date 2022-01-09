@@ -1,6 +1,6 @@
 FROM public.ecr.aws/docker/library/node:14-alpine AS builder
 
-ARG VERSION=1.2.2
+ARG VERSION=1.2.3
 
 COPY npm-shrinkwrap.json /npm-shrinkwrap.json
 

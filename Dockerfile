@@ -1,4 +1,4 @@
-FROM node:14-alpine AS build-stage
+FROM public.ecr.aws/docker/library/node:14-alpine AS builder
 
 ARG VERSION=1.2.2
 
@@ -19,6 +19,6 @@ RUN set -xe \
     && (npm audit || (npm audit fix --package-lock-only && (npm audit || true))) \
     && ./node_modules/.bin/gulp clean build
 
-FROM xbblabs/darkhttpd:1.13
+FROM quay.io/xbb/darkhttpd:1.13
 
-COPY --from=build-stage /AriaNg/dist/ /html
+COPY --from=builder /AriaNg/dist/ /html

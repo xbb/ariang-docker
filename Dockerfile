@@ -2,19 +2,14 @@ FROM public.ecr.aws/docker/library/node:14-alpine AS builder
 
 ARG VERSION=1.2.2
 
-RUN set -xe \
-    && apk add --no-cache git \
-    && wget -O AriaNg.zip "https://github.com/mayswind/AriaNg/archive/${VERSION}.zip" \
-    && unzip AriaNg.zip \
-    && mv "AriaNg-${VERSION}" AriaNg \
-    && node -v \
-    && npm -v
+COPY npm-shrinkwrap.json /npm-shrinkwrap.json
 
-COPY npm-shrinkwrap.json /AriaNg
-
-WORKDIR /AriaNg
-
-RUN set -xe \
+RUN apk add --upgrade --no-cache git \
+    && git clone --single-branch --depth 1 \
+        --recurse-submodules --shallow-submodules \
+        -b "${VERSION}" https://github.com/mayswind/AriaNg \
+    && cd AriaNg \
+    && ln -s /npm-shrinkwrap.json \
     && npm install \
     && (npm audit || (npm audit fix --package-lock-only && (npm audit || true))) \
     && ./node_modules/.bin/gulp clean build

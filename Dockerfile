@@ -14,7 +14,6 @@ RUN git clone --single-branch --depth 1 \
         -b "${VERSION}" https://github.com/mayswind/AriaNg \
     && cd AriaNg \
     && sed -i -E 's/"git:/"git+https:/' package.json package-lock.json \
-    && (npm audit || (npm audit fix --package-lock-only && (npm audit || true))) \
     && npm install \
     && npx gulp clean build
 

@@ -16,7 +16,7 @@ RUN git clone --single-branch --depth 1 \
     && sed -i -E 's/"git:/"git+https:/' package.json package-lock.json \
     && (npm audit || (npm audit fix --package-lock-only && (npm audit || true))) \
     && npm install \
-    && ./node_modules/.bin/gulp clean build
+    && npx gulp clean build
 
 FROM quay.io/xbb/darkhttpd:1.13
 

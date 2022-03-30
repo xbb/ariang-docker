@@ -18,6 +18,6 @@ RUN git clone --single-branch --depth 1 \
     && npm install \
     && npx gulp clean build
 
-FROM quay.io/xbb/darkhttpd:1.13
+FROM quay.io/xbb/darkhttpd:1.13-8dd374
 
 COPY --from=builder /home/builder/AriaNg/dist/ /html

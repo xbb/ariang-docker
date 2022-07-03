@@ -1,6 +1,6 @@
 FROM public.ecr.aws/docker/library/node:14 AS builder
 
-ARG VERSION=1.2.3
+ARG VERSION=1.2.4
 
 RUN apt update && apt upgrade -y && \
     useradd -m builder

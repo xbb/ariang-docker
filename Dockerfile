@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:14 AS builder
+FROM node:14 AS builder
 
 ARG VERSION=1.2.4
 
@@ -17,6 +17,6 @@ RUN git clone --single-branch --depth 1 \
     && npm install \
     && npx gulp clean build
 
-FROM quay.io/xbb/darkhttpd:1.13-8dd374
+FROM quay.io/xbb/darkhttpd:1.14
 
 COPY --from=builder /home/builder/AriaNg/dist/ /html

@@ -13,7 +13,6 @@ RUN git clone --single-branch --depth 1 \
         --recurse-submodules --shallow-submodules \
         -b "${VERSION}" https://github.com/mayswind/AriaNg \
     && cd AriaNg \
-    && sed -i -E 's/"git:/"git+https:/' package.json package-lock.json \
     && npm install \
     && npx gulp clean build
 

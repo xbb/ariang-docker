@@ -1,6 +1,6 @@
 FROM node:14 AS builder
 
-ARG VERSION=1.3.0
+ARG VERSION=1.3.1
 
 RUN apt update && apt upgrade -y && \
     useradd -m builder
